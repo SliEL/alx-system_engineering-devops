@@ -1,20 +1,6 @@
-#!/usr/bin/env bash
-# Using puppet to connect without password.
+# Use puppet to make configuration SSH file access without password
 
-include stdlib
-
-file {'/etc/ssh/ssh-ssh_config':
-    ensure  => present,
-}
-
-file_line { 'Turn off passwd auth':
-  path    => '/etc/ssh/sshd_config',
-  line    => 'PasswordAuthentication no',
-  match   => '^#PasswordAuthentication',
-}
-
-file_line { 'Declare identity file':
-  path    => '/etc/ssh/ssh_config',
-  line    => 'IdentityFile ~/.ssh/school',
-  match   => '^#IdentityFile',
+exec {'/etc/ssh/ssh_config':
+  path    => '/bin',
+  command => 'echo "PasswordAuthentication no" >> /etc/ssh/ssh_config; echo "IdentityFile ~/.ssh/holberton" >> /etc/ssh/ssh_config',
 }
