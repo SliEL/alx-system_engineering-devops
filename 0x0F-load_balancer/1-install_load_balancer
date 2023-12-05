@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# A script to install and configure HAProxy on web-lb-01 server
+# Configurung the HAProxy to send traffic to web-01 and web-02 servers
+# Use RoundRobin balance algortith
+# Make sure that HAProxy can be managed via an init script
+
+# installing haproxy in web-lb-01
+sudo apt-get -y update
+sudo apt-get -y install haproxy
+
+# setting up the config file.
+cfg_server =\
+"
+frontend    SliEl_frontend
+        bind *:80
+        mode http
+        default_backend SliEl_backend
+backend     SliEl_backend
+        balance roundrobin
+        server 374281-web-01 100.27.2.134:80 check
+        server 374281-web-02 100.24.236.92:80 check
+"
+# append the config above to the config file of haproxy
+echo "$cfg_server" | sudo tee -a /etc/haproxy/haproxy.cfg
+
+# enable the haproxy to be started by init script
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
+
+# testing the new config file
+sudo haproxy -c -f /etc/haproxy/haproxy.cfg
+
+# restart the HAproxy after making the changes.
+sudo service haproxy restart
