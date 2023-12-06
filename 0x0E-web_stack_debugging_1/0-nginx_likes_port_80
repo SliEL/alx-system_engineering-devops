@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# fixing issue listening on the port 80
+
+# remove the default nginx config ffile.
+rm /etc/nginx/sites-enabled/default
+
+# config nginx to listen on port 80 for all active IPv4 IPs.
+ln -s /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/default
+
+# restart nginx to apply changes.
+sudo service nginx restart
