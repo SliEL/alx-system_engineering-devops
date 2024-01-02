@@ -4,8 +4,8 @@ Script that, using this REST API, for a given employee ID, returns
 information about his TO-DO list progress
 and export data in the JSON format.
 """
-
-import requests, json
+import json
+import requests
 from sys import argv
 
 

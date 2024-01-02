@@ -5,7 +5,8 @@ information about his TO-DO list progress
 and exports data in the JSON format.
 """
 
-import requests, json
+import json
+import requests
 from sys import argv
 
 
@@ -17,8 +18,8 @@ if __name__ == "__main__":
     idURL = f'https://jsonplaceholder.typicode.com/users/{idEmp}/todos'
     nameURL = f'https://jsonplaceholder.typicode.com/users/{idEmp}'
 
-    employee = sessionReq.get(idURL)
-    employeeName = sessionReq.get(nameURL)
+    employee = Req.get(idURL)
+    employeeName = Req.get(nameURL)
 
     json_req = employee.json()
     usr = employeeName.json()['username']
