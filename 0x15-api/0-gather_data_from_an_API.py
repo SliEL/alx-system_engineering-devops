@@ -9,6 +9,7 @@ from sys import argv
 
 
 if __name__ == "__main__":
+
     Req = requests.Session()
 
     idEmp = argv[1]
@@ -32,4 +33,4 @@ if __name__ == "__main__":
 
     for done_tasks in json_req:
         if done_tasks['completed']:
-            print("     " + done_tasks.get('title'))
+            print("\t" + done_tasks.get('title'))
