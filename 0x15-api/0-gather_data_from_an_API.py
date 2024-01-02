@@ -7,17 +7,16 @@ import json
 import requests
 from sys import argv
 
-
 if __name__ == "__main__":
 
-    Req = requests.Session()
+    sessionReq = requests.Session()
 
     idEmp = argv[1]
     idURL = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(idEmp)
     nameURL = 'https://jsonplaceholder.typicode.com/users/{}'.format(idEmp)
 
-    employee = Req.get(idURL)
-    employeeName = Req.get(nameURL)
+    employee = sessionReq.get(idURL)
+    employeeName = sessionReq.get(nameURL)
 
     json_req = employee.json()
     name = employeeName.json()['name']
@@ -33,4 +32,5 @@ if __name__ == "__main__":
 
     for done_tasks in json_req:
         if done_tasks['completed']:
-            print("\t" + done_tasks.get('title'))
+            print("\t " + done_tasks.get('title'))
+
