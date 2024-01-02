@@ -4,7 +4,8 @@ Python script that, using this REST API, for a given employee ID,
 returns information about his/her TO-DO list progress.
 """
 
-import requests, json
+import requests
+import json
 from sys import argv
 
 
@@ -32,4 +33,4 @@ if __name__ == "__main__":
 
     for done_tasks in json_req:
         if done_tasks['completed']:
-            print("\t" + done_tasks.get('title'))
+            print("     " + done_tasks.get('title'))
