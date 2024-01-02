@@ -5,8 +5,8 @@ information about his TO-DO list progress
 exporting data in the CSV format.
 """
 
-import json
 import csv
+import json
 import requests
 from sys import argv
 
