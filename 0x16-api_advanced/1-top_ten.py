@@ -7,7 +7,7 @@ from requests import get
 def top_ten(subreddit):
     """Prints top 10 hot posts in a subreddit."""
     url = f"http://www.reddit.com/r/{subreddit}/hot.json"
-    header = {'User-Agent': 'MyBot'}
+    header = {'User-Agent': 'Mybot'}
     response = get(url, headers=header)
     try:
         reddit_data = response.json()
