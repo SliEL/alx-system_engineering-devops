@@ -13,5 +13,5 @@ def number_of_subscribers(subreddit):
     try:
         subreddit_data = response.json()
         return subreddit_data['data']['subscribers']
-    except requests.exceptions.RequestException as e:
+    except:
         return 0
