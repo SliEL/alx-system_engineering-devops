@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """prints top 10 hot post titles in a subreddit."""
-
 import requests
 from requests import get
 
