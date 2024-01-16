@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """returns numder of subscripres in a given subreddit."""
+import requests
 from requests import get
+
 
 def number_of_subscribers(subreddit):
     """returns numder of subscripres in a given subreddit."""
@@ -11,6 +13,5 @@ def number_of_subscribers(subreddit):
     try:
         subreddit_data = response.json()
         return subreddit_data['data']['subscribers']
-    except:
+    except requests.exceptions.RequestException as e:
         return 0
-    

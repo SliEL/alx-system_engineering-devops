@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """returns a list of titles of all hot posts
 in a subreddit. """
+import requests
 from requests import get
+
 
 def recurse(subreddit, hot_list=[], after=None):
     """
@@ -20,11 +22,10 @@ def recurse(subreddit, hot_list=[], after=None):
         for i in range(dict_len):
             hot_list.append(reddit_data['data']['children'][i]
                             ['data']['title'])
-        
         after = reddit_data['data']['after']
 
         if after is None:
             return hot_list
         return recurse(subreddit, hot_list, after)
-    except:
+    except requests.exceptions.RequestException as e:
         return None
