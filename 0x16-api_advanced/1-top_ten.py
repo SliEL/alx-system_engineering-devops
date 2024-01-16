@@ -14,5 +14,5 @@ def top_ten(subreddit):
         reddit_data = response.json()
         for i in range(10):
             print(reddit_data['data']['children'][i]['data']['title'])
-    except requests.exceptions.RequestException as e:
+    except:
         print(None)
