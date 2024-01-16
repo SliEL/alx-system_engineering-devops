@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""returns numder of subscripres in a given subreddit."""
+"""
+returns numder of subscripres in
+a given subreddit.
+"""
 from requests import get
 
 
