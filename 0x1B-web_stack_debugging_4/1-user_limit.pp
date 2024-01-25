@@ -1,5 +1,4 @@
-# Puppet manifest to increase file open limits for holberton user and configure PAM to apply these limits
-
+#increase file open limits for holberton user
 file_line { 'increase_holberton_soft_limit':
   path   => '/etc/security/limits.conf',
   line   => 'holberton soft nofile 4096',
