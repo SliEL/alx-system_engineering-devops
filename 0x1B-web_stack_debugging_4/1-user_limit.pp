@@ -1,14 +1,13 @@
-# Puppet manifest to configure system limits and PAM to address 'Too many open files' issue for 'holberton' user
+# Puppet manifest to increase file descriptor limits for the 'holberton' user and configure PAM
 
-# Manage the /etc/security/limits.conf file directly
-file { '/etc/security/limits.conf':
-  ensure  => file,
-  content => template('path/to/your/template/limits.conf.erb'),
+exec { 'increase_holberton_nofile_limit':
+  command => "echo 'holberton - nofile 4096' >> /etc/security/limits.conf",
+  unless  => "grep -q 'holberton - nofile 4096' /etc/security/limits.conf",
+  path    => ['/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/'],
 }
 
-# Ensure PAM applies these limits
-file_line { 'ensure_pam_limits':
-  ensure => present,
-  path   => '/etc/pam.d/common-session',
-  line   => 'session required pam_limits.so',
+exec { 'ensure_pam_limits_module':
+  command => "echo 'session required pam_limits.so' >> /etc/pam.d/common-session",
+  unless  => "grep -q 'session required pam_limits.so' /etc/pam.d/common-session",
+  path    => ['/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/'],
 }
