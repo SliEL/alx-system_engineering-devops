@@ -1,18 +1,12 @@
-#increase file open limits for holberton user
-file_line { 'increase_holberton_soft_limit':
-  ensure => present,
-  path   => '/etc/security/limits.conf',
-  line   => 'holberton soft nofile 4096',
-  match  => '^holberton soft nofile',
+# Puppet manifest to configure system limits and PAM to address 'Too many open files' issue for 'holberton' user
+
+# Manage the /etc/security/limits.conf file directly
+file { '/etc/security/limits.conf':
+  ensure  => file,
+  content => template('path/to/your/template/limits.conf.erb'),
 }
 
-file_line { 'increase_holberton_hard_limit':
-  ensure => present,
-  path   => '/etc/security/limits.conf',
-  line   => 'holberton hard nofile 8192',
-  match  => '^holberton hard nofile',
-}
-
+# Ensure PAM applies these limits
 file_line { 'ensure_pam_limits':
   ensure => present,
   path   => '/etc/pam.d/common-session',
